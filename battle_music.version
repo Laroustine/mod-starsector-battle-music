@@ -1,0 +1,10 @@
+{
+    "masterVersionFile": "https://raw.githubusercontent.com/Laroustine/mod-starsector-battle-music/master/battle_music.version",
+    "modName": "Battle Music",
+    // "modThreadId": 24162,
+    "modVersion": {
+        "major": 1,
+        "minor": 0,
+        "patch": 0
+    }
+}

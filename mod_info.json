@@ -1,0 +1,12 @@
+{
+	"id": "battle_music",
+	"name": "Battle Music",
+	"author": "Created by Laroustine",
+	"version": "1.0.0",
+	"description": "",
+	"gameVersion": "0.95.1a-RC6",
+	"dependencies": [],
+	"jars": [
+		"jars/BattleMusic.jar"
+	]
+}
