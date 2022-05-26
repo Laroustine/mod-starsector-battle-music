@@ -26,7 +26,7 @@ public class MusicPlugin extends MusicPlayerPluginImpl {
         } else if (engine.isMission()) {
             LOG.info("The Mission [" + engine.getMissionId() + "] does not have custom music.");
             LOG.info("Missions don't have anyway of having custom music yet.");
-        } else {
+        } else if (engine.isSimulation()) {
             LOG.info("Music is set to default.");
         }
         return super.getMusicSetIdForCombat(engine);

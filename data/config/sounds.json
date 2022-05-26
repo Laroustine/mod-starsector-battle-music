@@ -1,3 +1,11 @@
 {
-  "music": {}
+  "music": {
+    "music_pirate_battle": [
+      {
+        "source": "sounds/music/",
+        "volume": 0.15,
+        "file": "4_The_Vikings.ogg"
+      }
+    ]
+  }
 }
