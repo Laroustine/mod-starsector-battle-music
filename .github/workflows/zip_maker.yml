@@ -96,7 +96,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create-new-release.outputs.upload_url }}
-          asset_path: ./Battle_Music_Vanilla.zip
+          asset_path: ./Battle_Music_Vanilla
           asset_name: Battle_Music_Vanilla.zip
           asset_content_type: application/zip
       - name: Upload Artifact - Custom
@@ -105,6 +105,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create-new-release.outputs.upload_url }}
-          asset_path: ./Battle_Music_Custom.zip
+          asset_path: ./Battle_Music_Custom
           asset_name: Battle_Music_Custom.zip
           asset_content_type: application/zip
