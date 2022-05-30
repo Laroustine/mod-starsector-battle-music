@@ -81,8 +81,12 @@ jobs:
           ls -R 
       - name: Make .ZIP for Folders
         run:  |
-          zip Battle_Music_Vanilla.zip Battle_Music_Vanilla
-          zip Battle_Music_Custom.zip Battle_Music_Custom
+          cd Battle_Music_Vanilla
+          zip -r Battle_Music_Vanilla.zip ./Battle_Music
+          mv Battle_Music_Vanilla.zip ..
+          cd ../Battle_Music_Custom
+          zip -r Battle_Music_Custom.zip ./Battle_Music
+          mv Battle_Music_Custom.zip ..
       - name: Create release
         id: create-new-release
         uses: actions/create-release@v1
