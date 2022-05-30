@@ -7,7 +7,7 @@ on:
         description: "Version Name"
         required: true
         type: string
-        default: "v.X.X.X"
+        default: "X.X.X"
       draft:
         description: "Draft"
         required: true
@@ -93,8 +93,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.event.inputs.version }}
-          release_name: Release ${{ github.event.inputs.version }}
+          tag_name: v.${{ github.event.inputs.version }}
+          release_name: Version ${{ github.event.inputs.version }}
           draft: ${{ github.event.inputs.draft }}
           prerelease: ${{ github.event.inputs.prerealease }}
           body: ${{ github.event.inputs.description }}
