@@ -1,0 +1,107 @@
+name: Make Artifact for Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version Name"
+        required: true
+        type: string
+        default: "v.X.X.X"
+      draft:
+        description: "Draft"
+        required: true
+        type: boolean
+        default: true
+      prerealease:
+        description: "Pre-Realease"
+        required: true
+        type: boolean
+        default: false
+      description:
+        description: "Description"
+        required: false
+        type: string
+        default: "This release as no current information about it."
+
+jobs:
+  vanilla:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Create mod Folder
+        run: |
+          mkdir Battle_Music
+      - name: Copy Files
+        run: |
+          cp mod_info.json Battle_Music/
+          cp battle_music.version Battle_Music/
+          cp -r jars Battle_Music/
+          rsync -av --exclude="sounds.json" --exclude="world" data Battle_Music/
+      - name: Move Folder
+        run: |
+          mkdir mod
+          mv -f Battle_Music mod/
+      - name: Make Artifact (.ZIP)
+        uses: actions/upload-artifact@v2
+        with:
+          name: Battle_Music_Vanilla
+          path: mod
+          retention-days: 30
+  custom:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Create mod Folder
+        run: |
+          mkdir Battle_Music
+      - name: Copy Files
+        run: |
+          cp mod_info.json Battle_Music/
+          cp battle_music.version Battle_Music/
+          cp -r jars Battle_Music/
+          rsync -av data Battle_Music/
+      - name: Move Folder
+        run: |
+          mkdir mod
+          mv -f Battle_Music mod/
+      - name: Make Artifact (.ZIP)
+        uses: actions/upload-artifact@v2
+        with:
+          name: Battle_Music_Custom
+          path: mod
+          retention-days: 30
+  release:
+    needs: [vanilla, custom]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v3
+      - name: Create release
+        id: create-new-release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ inputs.version }}
+          release_name: Release ${{ inputs.version }}
+          draft: ${{ inputs.draft }}
+          prerelease: ${{ inputs.prerealease }}
+          body: ${{ inputs.description }}
+      - name: Upload Artifact - Vanilla
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create-new-release.outputs.upload_url }}
+          asset_path: ./Battle_Music_Vanilla.zip
+          asset_name: Battle_Music_Vanilla.zip
+          asset_content_type: application/zip
+      - name: Upload Artifact - Custom
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create-new-release.outputs.upload_url }}
+          asset_path: ./Battle_Music_Custom.zip
+          asset_name: Battle_Music_Custom.zip
+          asset_content_type: application/zip
