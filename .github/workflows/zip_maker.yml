@@ -82,11 +82,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ inputs.version }}
-          release_name: Release ${{ inputs.version }}
-          draft: ${{ inputs.draft }}
-          prerelease: ${{ inputs.prerealease }}
-          body: ${{ inputs.description }}
+          tag_name: ${{ github.event.inputs.version }}
+          release_name: Release ${{ github.event.inputs.version }}
+          draft: ${{ github.event.inputs.draft }}
+          prerelease: ${{ github.event.inputs.prerealease }}
+          body: ${{ github.event.inputs.description }}
       - name: Upload Artifact - Vanilla
         uses: actions/upload-release-asset@v1
         env:
