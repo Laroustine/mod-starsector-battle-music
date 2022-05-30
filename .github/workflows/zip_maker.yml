@@ -79,6 +79,10 @@ jobs:
       - name: Display Folder
         run:  |
           ls -R 
+      - name: Make .ZIP for Folders
+        run:  |
+          zip Battle_Music_Vanilla.zip Battle_Music_Vanilla
+          zip Battle_Music_Custom.zip Battle_Music_Custom
       - name: Create release
         id: create-new-release
         uses: actions/create-release@v1
@@ -96,7 +100,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create-new-release.outputs.upload_url }}
-          asset_path: ./Battle_Music_Vanilla
+          asset_path: ./Battle_Music_Vanilla.zip
           asset_name: Battle_Music_Vanilla.zip
           asset_content_type: application/zip
       - name: Upload Artifact - Custom
@@ -105,6 +109,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create-new-release.outputs.upload_url }}
-          asset_path: ./Battle_Music_Custom
+          asset_path: ./Battle_Music_Custom.zip
           asset_name: Battle_Music_Custom.zip
           asset_content_type: application/zip
