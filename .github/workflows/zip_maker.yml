@@ -59,6 +59,7 @@ jobs:
         run: |
           cp mod_info.json Battle_Music/
           cp battle_music.version Battle_Music/
+          cp Licence.md Battle_Music/
           cp -r jars Battle_Music/
           rsync -av data Battle_Music/
       - name: Move Folder
