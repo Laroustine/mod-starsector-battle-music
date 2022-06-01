@@ -3,7 +3,8 @@
 	"name": "Battle Music",
 	"author": "Created by Laroustine",
 	"version": "1.2.1",
-	"description": "",
+    "utility": "true",
+	"description": "This mod adds the ability to have custom battle songs for factions",
 	"gameVersion": "0.95.1a-RC6",
 	"dependencies": [],
 	"jars": [
