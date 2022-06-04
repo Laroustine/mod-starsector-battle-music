@@ -2,79 +2,79 @@
   "music": {
     "music_pirate_battle": [
       {
-        "source": "sounds/music/",
+        "source": "sounds/music",
         "volume": 0.15,
         "file": "4_The_Vikings.ogg"
       }
     ],
     "music_hegemony_battle": [
       {
-        "source": "sounds/music/",
+        "source": "sounds/music",
         "volume": 0.15,
         "file": "02_assemblingthefleet.ogg"
       },
       {
-        "source": "sounds/music/",
+        "source": "sounds/music",
         "volume": 0.15,
         "file": "03_hostilefleetdetected.ogg"
       },
       {
-        "source": "sounds/music/",
+        "source": "sounds/music",
         "volume": 0.15,
         "file": "04_gatherthefleet.ogg"
       }
     ],
     "music_league_battle": [
       {
-        "source": "sounds/music/",
+        "source": "sounds/music",
         "volume": 0.15,
         "file": "02_assemblingthefleet.ogg"
       },
       {
-        "source": "sounds/music/",
+        "source": "sounds/music",
         "volume": 0.15,
         "file": "03_hostilefleetdetected.ogg"
       },
       {
-        "source": "sounds/music/",
+        "source": "sounds/music",
         "volume": 0.15,
         "file": "04_gatherthefleet.ogg"
       }
     ],
     "music_diktat_battle": [
       {
-        "source": "sounds/music/",
+        "source": "sounds/music",
         "volume": 0.15,
         "file": "05_thelaststand.ogg"
       },
       {
-        "source": "sounds/music/",
+        "source": "sounds/music",
         "volume": 0.15,
         "file": "04_thetitan.ogg"
       }
     ],
     "music_trytachyon_battle": [
       {
-        "source": "sounds/music/",
+        "source": "sounds/music",
         "volume": 0.12,
         "file": "02_robotics.ogg"
       },
       {
-        "source": "sounds/music/",
+        "source": "sounds/music",
         "volume": 0.12,
         "file": "03_syntheticgod.ogg"
       }
     ],
     "music_church_battle": [
       {
-        "source": "sounds/music/",
+        "source": "sounds/music",
         "volume": 0.15,
         "file": "02_doomsday.ogg"
       }
     ],
     "music_path_battle": [
       {
-        "source": "sounds/music/",
+        "source": "sounds/music",
         "volume": 0.15,
         "file": "01_dragonbreath.ogg"
       }

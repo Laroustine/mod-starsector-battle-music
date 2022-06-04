@@ -62,6 +62,7 @@ jobs:
           cp Licence.md Battle_Music/
           cp -r jars Battle_Music/
           rsync -av data Battle_Music/
+          rsync -av sounds Battle_Music/
       - name: Move Folder
         run: |
           mkdir mod
