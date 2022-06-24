@@ -78,6 +78,13 @@
         "volume": 0.15,
         "file": "01_dragonbreath.ogg"
       }
+    ],
+    "music_sim_battle": [
+      {
+        "source": "sounds/music",
+        "volume": 0.15,
+        "file": "01_dragonbreath.ogg"
+      }
     ]
   }
 }

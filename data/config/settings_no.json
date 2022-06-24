@@ -1,5 +1,5 @@
 {
-  "simulation_ost": true,
+  "simulation_ost": false,
   "plugins": {
     "musicPlugin": "data.scripts.plugin.MusicPlugin"
   }

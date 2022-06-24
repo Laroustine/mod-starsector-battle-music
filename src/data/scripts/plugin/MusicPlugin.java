@@ -3,6 +3,7 @@
 */
 package data.scripts.plugin;
 
+import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.campaign.FactionAPI;
 import com.fs.starfarer.api.combat.CombatEngineAPI;
 import com.fs.starfarer.api.impl.MusicPlayerPluginImpl;
@@ -12,23 +13,65 @@ import org.apache.log4j.Logger;
 public class MusicPlugin extends MusicPlayerPluginImpl {
     protected final Logger LOG = Logger.getLogger(MusicPlugin.class);
 
+    protected String getCampaignMusic(CombatEngineAPI engine) {
+        FactionAPI faction = engine.getContext().getOtherFleet().getFaction();
+        String musicId = faction.getMusicMap().get("battle");
+        float ratio = engine.getContext().getOtherFleet().getFleetSizeCount()
+                / engine.getContext().getPlayerFleet().getFleetSizeCount();
+
+        // Special Cases
+        if (engine.isEnemyInFullRetreat()) {
+            musicId = faction.getMusicMap().get("battle_retreat");
+        } else if (ratio >= 1.8) {
+            musicId = faction.getMusicMap().get("battle_advantage");
+        } else if (ratio <= 0.2) {
+            musicId = faction.getMusicMap().get("battle_losing");
+        }
+        // Handle Find
+        if (musicId != null) {
+            LOG.info("The music for this faction is : " + musicId);
+        } else {
+            LOG.info("The Faction [" + faction.getDisplayName() + "] does not have custom music.");
+            musicId = super.getMusicSetIdForCombat(engine);
+        }
+        return musicId;
+    }
+
+    protected String getMissionMusic(CombatEngineAPI engine) {
+        String musicId = "music_" + engine.getMissionId();
+
+        if (engine.getContext().getOtherFleet().hasTag(musicId)) {
+            LOG.info("The music for this mission is : " + musicId);
+        } else {
+            LOG.info("The Mission [" + engine.getMissionId() + "] does not have custom music.");
+            musicId = super.getMusicSetIdForCombat(engine);
+        }
+        return musicId;
+    }
+
+    protected String getSimulationMusic(CombatEngineAPI engine) {
+        String musicId = super.getMusicSetIdForCombat(engine);
+
+        if (Global.getSettings().getBoolean("simulation_ost")) {
+            LOG.info("The music for the simulation is : " + musicId);
+            return "music_sim_battle";
+        }
+        return musicId;
+    }
+
     @Override
     public String getMusicSetIdForCombat(CombatEngineAPI engine) {
-        if (engine.isInCampaign()) {
-            FactionAPI faction = engine.getContext().getOtherFleet().getFaction();
-            String musicId = faction.getMusicMap().get("battle");
+        String musicId = super.getMusicSetIdForCombat(engine);
 
-            if (musicId != null) {
-                LOG.info("The music for this faction is : " + musicId);
-                return musicId;
-            }
-            LOG.info("The Faction [" + faction.getDisplayName() + "] does not have custom music.");
+        if (engine.isInCampaign()) {
+            musicId = getCampaignMusic(engine);
         } else if (engine.isMission()) {
-            LOG.info("The Mission [" + engine.getMissionId() + "] does not have custom music.");
-            LOG.info("Missions don't have anyway of having custom music yet.");
+            musicId = getMissionMusic(engine);
+        } else if (engine.isSimulation()) {
+            musicId = getSimulationMusic(engine);
         } else {
             LOG.info("Music is set to default.");
         }
-        return super.getMusicSetIdForCombat(engine);
+        return musicId;
     }
 }

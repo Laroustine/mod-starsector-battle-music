@@ -37,7 +37,8 @@ jobs:
           cp mod_info.json Battle_Music/
           cp battle_music.version Battle_Music/
           cp -r jars Battle_Music/
-          rsync -av --exclude="sounds.json" --exclude="world" data Battle_Music/
+          rsync -av --exclude="sounds.json" --exclude="settings.json" --exclude="world" data Battle_Music/
+          mv Battle_Music/data/settings_no.json Battle_Music/data/settings.json
       - name: Move Folder
         run: |
           mkdir mod
@@ -61,7 +62,7 @@ jobs:
           cp battle_music.version Battle_Music/
           cp Licence.md Battle_Music/
           cp -r jars Battle_Music/
-          rsync -av data Battle_Music/
+          rsync -av data --exclude="settings_no.json" Battle_Music/
           rsync -av sounds Battle_Music/
       - name: Move Folder
         run: |
@@ -79,10 +80,10 @@ jobs:
     steps:
       - uses: actions/download-artifact@v3
       - name: Display Folder
-        run:  |
-          ls -R 
+        run: |
+          ls -R
       - name: Make .ZIP for Folders
-        run:  |
+        run: |
           cd Battle_Music_Vanilla
           zip -r Battle_Music_Vanilla.zip ./Battle_Music
           mv Battle_Music_Vanilla.zip ..
