@@ -1,13 +1,15 @@
-/*
-** Script by Laroustine
-*/
+/**
+ * @ Author: Laroustine
+ * @ Modified time: 26/06 22:18
+ * @ Modified by: Laroustine
+ * @ Description: This script has been made by me ↖(^▽^)↗
+ */
 package data.scripts.plugin;
 
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.campaign.CampaignFleetAPI;
 import com.fs.starfarer.api.campaign.FactionAPI;
 import com.fs.starfarer.api.combat.CombatEngineAPI;
-import com.fs.starfarer.api.fleet.FleetAPI;
 import com.fs.starfarer.api.impl.MusicPlayerPluginImpl;
 
 import org.apache.log4j.Logger;
@@ -46,9 +48,9 @@ public class MusicPlugin extends MusicPlayerPluginImpl {
     }
 
     protected String getMissionMusic(CombatEngineAPI engine) {
-        String musicId = "music_" + engine.getMissionId();
+        String musicId = Global.getSector().getMemory().getString(MUSIC_SET_MEM_KEY);
 
-        if (engine.getContext().getOtherFleet().hasTag(musicId)) {
+        if (musicId != null) {
             LOG.info("The music for this mission is : " + musicId);
         } else {
             LOG.info("The Mission [" + engine.getMissionId() + "] does not have custom music.");

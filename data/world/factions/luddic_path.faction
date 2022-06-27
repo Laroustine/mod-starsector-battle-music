@@ -1,5 +1,6 @@
 {
 	"music": {
-		"battle": "music_path_battle"
+		"battle": "music_path_battle",
+		"battle_retreat": "music_battle_retreat"
 	}
 }

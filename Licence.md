@@ -1,8 +1,11 @@
 # Music by Alexander Nakarada
 
-Music: The Vikings by Alexander Nakarada (https://www.serpentsoundstudios.com)
+Music: **The Vikings** by _Alexander Nakarada_ (https://www.serpentsoundstudios.com)
 Licensed under Creative Commons BY Attribution 4.0 License
 
-# Music from Games
+# Music by Turjan Aylahn
 
-Music from Stelaris
+Music: **Tanc a lelek** by _Turjan Aylahn_ (https://www.jamendo.com)
+Licensed under Creative Commons 4.0 License
+
+# 
