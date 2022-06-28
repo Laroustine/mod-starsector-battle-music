@@ -1,6 +1,6 @@
 /**
  * @ Author: Laroustine
- * @ Modified time: 26/06 22:18
+ * @ Modified time: 28/06 12:39
  * @ Modified by: Laroustine
  * @ Description: This script has been made by me ↖(^▽^)↗
  */
@@ -60,13 +60,8 @@ public class MusicPlugin extends MusicPlayerPluginImpl {
     }
 
     protected String getSimulationMusic(CombatEngineAPI engine) {
-        String musicId = super.getMusicSetIdForCombat(engine);
-
-        if (Global.getSettings().getBoolean("simulation_ost")) {
-            LOG.info("The music for the simulation is : " + musicId);
-            return "music_sim_battle";
-        }
-        return musicId;
+        LOG.info("The music for the simulation is started");
+        return "music_sim_battle";
     }
 
     @Override
@@ -75,9 +70,9 @@ public class MusicPlugin extends MusicPlayerPluginImpl {
 
         if (engine.isInCampaign()) {
             musicId = getCampaignMusic(engine);
-        } else if (engine.isMission()) {
+        } else if (Global.getSettings().getBoolean("mission_ost") && engine.isMission()) {
             musicId = getMissionMusic(engine);
-        } else if (engine.isSimulation()) {
+        } else if (Global.getSettings().getBoolean("simulation_ost") && engine.isSimulation()) {
             musicId = getSimulationMusic(engine);
         } else {
             LOG.info("Music is set to default.");
