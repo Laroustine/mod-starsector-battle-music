@@ -1,6 +1,5 @@
 {
-	"music": {
-		"battle": "music_tritachyon_battle",
-		"battle_retreat": "music_battle_retreat"
-	}
+    "music": {
+        "battle_retreat": "00_battle_retreat"
+    }
 }

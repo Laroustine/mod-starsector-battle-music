@@ -10,9 +10,9 @@
                 "randomStart": false
             }
         ],
-        "pirate_battle": [
+        "pirates_battle": [
             {
-                "source": "sounds/music/cbm/pirate/battle",
+                "source": "sounds/music/cbm/pirates/battle",
                 "volume": 0.1,
                 "files": [
                     "4_The_Vikings.ogg"
