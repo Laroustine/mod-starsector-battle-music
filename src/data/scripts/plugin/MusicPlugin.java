@@ -1,6 +1,6 @@
 /**
  * @ Author: Laroustine
- * @ Modified time: 28/06 12:39
+ * @ Modified time: 08/07 18:36
  * @ Modified by: Laroustine
  * @ Description: This script has been made by me ↖(^▽^)↗
  */
@@ -26,7 +26,8 @@ public class MusicPlugin extends MusicPlayerPluginImpl {
 
     protected String getCampaignMusic(CombatEngineAPI engine) {
         FactionAPI faction = engine.getContext().getOtherFleet().getFaction();
-        String musicId = faction.getMusicMap().get("battle");
+        String battle = faction.getMusicMap().get("battle");
+        String musicId = battle;
         float ratio = getFleetRatio(engine.getContext().getOtherFleet(), engine.getContext().getPlayerFleet());
 
         // Special Cases
@@ -38,13 +39,13 @@ public class MusicPlugin extends MusicPlayerPluginImpl {
             musicId = faction.getMusicMap().get("battle_losing");
         }
         // Handle Find
-        if (musicId != null) {
-            LOG.info("The music for this faction is : " + musicId);
+        if (musicId != null || battle != null) {
+            LOG.info("The music for this faction is : " + musicId == null ? battle : musicId);
         } else {
             LOG.info("The Faction [" + faction.getDisplayName() + "] does not have custom music.");
             musicId = super.getMusicSetIdForCombat(engine);
         }
-        return musicId;
+        return musicId == null ? battle : musicId;
     }
 
     protected String getMissionMusic(CombatEngineAPI engine) {

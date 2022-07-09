@@ -1,11 +1,31 @@
 {
     "music": {
+        "00_battle_advantage": [
+            {
+                "source": "sounds/music/cbm/00/battle_advantage",
+                "volume": 0.1,
+                "files": [
+                    "Archaik_UFO.ogg"
+                ],
+                "randomStart": false
+            }
+        ],
         "00_battle_retreat": [
             {
                 "source": "sounds/music/cbm/00/battle_retreat",
                 "volume": 0.1,
                 "files": [
                     "Tanc_a_lelek_-_Turjan_Aylahn.ogg"
+                ],
+                "randomStart": false
+            }
+        ],
+        "00_battle_losing": [
+            {
+                "source": "sounds/music/cbm/00/battle_losing",
+                "volume": 0.1,
+                "files": [
+                    "Wrestlers_Training_Centre.ogg"
                 ],
                 "randomStart": false
             }
