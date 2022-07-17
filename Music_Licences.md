@@ -9,7 +9,6 @@ Licensed under Creative Commons BY Attribution 4.0 License
 # Music from [Musikbrause](https://musikbrause.de/)
 - **Intergalactic War (ID 368)** by _Lobo Loco_ is licensed under CC BY-NC-SA 4.0
 - **Technomagus Meeting (ID 502)** by _Lobo Loco_ is licensed under CC BY-NC-SA 4.0
-- **Little Robots Army (ID 571)** by _Lobo Loco_ is licensed under CC BY-NC-SA 4.0
 - **Wrestlers Training Centre (ID 668)** by _Lobo Loco_ is licensed under CC BY-NC-SA 4.0
 - **Kung Fu Fighters March - Slow (ID 832)** by _Lobo Loco_ is licensed under CC BY-NC-SA 4.0
 - **Kung Fu Fighters March - Fast (ID 833)** by _Lobo Loco_ is licensed under CC BY-NC-SA 4.0
