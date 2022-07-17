@@ -60,7 +60,7 @@ jobs:
         run: |
           cp mod_info.json Battle_Music/
           cp battle_music.version Battle_Music/
-          cp Music_Licence.md Battle_Music/
+          cp Music_Licences.md Battle_Music/
           cp -r jars Battle_Music/
           rsync -av data --exclude="settings_no.json" Battle_Music/
           rsync -av sounds Battle_Music/
