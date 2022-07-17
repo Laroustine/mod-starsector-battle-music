@@ -30,12 +30,82 @@
                 "randomStart": false
             }
         ],
+        "independent_battle": [
+            {
+                "source": "sounds/music/cbm/independent/battle",
+                "volume": 0.1,
+                "files": [
+                    "Intergalactic_War.ogg"
+                ],
+                "randomStart": false
+            }
+        ],
+        "knights_of_ludd_battle": [
+            {
+                "source": "sounds/music/cbm/knights_of_ludd/battle",
+                "volume": 0.1,
+                "files": [
+                    "Kung_Fu_Fighters_March-Fast.ogg"
+                ],
+                "randomStart": false
+            }
+        ],
+        "luddic_church_battle": [
+            {
+                "source": "sounds/music/cbm/luddic_church/battle",
+                "volume": 0.1,
+                "files": [
+                    "Kung_Fu_Fighters_March-Slow.ogg"
+                ],
+                "randomStart": false
+            }
+        ],
+        "omega_battle_advantage": [
+            {
+                "source": "sounds/music/cbm/omega/battle_advantage",
+                "volume": 0.1,
+                "files": [
+                    "The_Construal_of_Space_in_Language_and_Thought.ogg"
+                ],
+                "randomStart": false
+            }
+        ],
+        "omega_battle": [
+            {
+                "source": "sounds/music/cbm/omega/battle",
+                "volume": 0.1,
+                "files": [
+                    "Fly_of_the_Electrons.ogg"
+                ],
+                "randomStart": false
+            }
+        ],
         "pirates_battle": [
             {
                 "source": "sounds/music/cbm/pirates/battle",
                 "volume": 0.1,
                 "files": [
                     "4_The_Vikings.ogg"
+                ],
+                "randomStart": false
+            }
+        ],
+        "remnants_battle": [
+            {
+                "source": "sounds/music/cbm/remnants/battle",
+                "volume": 0.1,
+                "files": [
+                    "Astro_Mining.ogg"
+                ],
+                "randomStart": false
+            }
+        ],
+        "remnants_battle_losing": [
+            {
+                "source": "sounds/music/cbm/remnants/battle_losing",
+                "volume": 0.1,
+                "files": [
+                    "Technomagus_Meeting.ogg"
                 ],
                 "randomStart": false
             }

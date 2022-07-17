@@ -6,7 +6,7 @@ Licensed under Creative Commons BY Attribution 4.0 License
 # Music by Turjan Aylahn
 - **Tanc a lelek** by _Turjan Aylahn_ is licensed under CC BY-ND-SA-NC 4.0
 
-# Music by [Lobo Loco](https://musikbrause.de/)
+# Music from [Musikbrause](https://musikbrause.de/)
 - **Intergalactic War (ID 368)** by _Lobo Loco_ is licensed under CC BY-NC-SA 4.0
 - **Technomagus Meeting (ID 502)** by _Lobo Loco_ is licensed under CC BY-NC-SA 4.0
 - **Little Robots Army (ID 571)** by _Lobo Loco_ is licensed under CC BY-NC-SA 4.0
