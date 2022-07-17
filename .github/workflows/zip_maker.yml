@@ -38,7 +38,7 @@ jobs:
           cp battle_music.version Battle_Music/
           cp -r jars Battle_Music/
           rsync -av --exclude="sounds.json" --exclude="settings.json" --exclude="world" data Battle_Music/
-          mv data/settings_no.json Battle_Music/data/settings.json
+          mv Battle_Music/data/config/settings_no.json Battle_Music/data/config/settings.json
       - name: Move Folder
         run: |
           mkdir mod
