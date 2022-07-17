@@ -109,6 +109,16 @@
                 ],
                 "randomStart": false
             }
+        ],
+        "simulation_ost": [
+            {
+                "source": "sounds/music/cbm/simulation_ost/",
+                "volume": 0.1,
+                "files": [
+                    "Most Delightful Ever (ID 967).ogg"
+                ],
+                "randomStart": false
+            }
         ]
     }
 }

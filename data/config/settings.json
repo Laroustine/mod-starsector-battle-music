@@ -1,6 +1,6 @@
 {
-  "simulation_ost": false,
-  "mission_ost": false,
+  "simulation_ost": true,
+  "mission_ost": true,
   "plugins": {
     "musicPlugin": "data.scripts.plugin.MusicPlugin"
   }

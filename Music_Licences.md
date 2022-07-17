@@ -12,6 +12,7 @@ Licensed under Creative Commons BY Attribution 4.0 License
 - **Wrestlers Training Centre (ID 668)** by _Lobo Loco_ is licensed under CC BY-NC 4.0
 - **Kung Fu Fighters March - Slow (ID 832)** by _Lobo Loco_ is licensed under CC BY-NC 4.0
 - **Kung Fu Fighters March - Fast (ID 833)** by _Lobo Loco_ is licensed under CC BY-NC 4.0
+- **Most Delightful Ever (ID 967)** by _Lobo Loco_ is licensed under CC BY-NC 4.0
 - **Fly of the Electrons (ID 988)** by _Lobo Loco_ is licensed under CC BY-NC 4.0
 - **Astro Mining (ID 1631)** by _Lobo Loco_ is licensed under CC BY-NC 4.0
 - **Archaik UFO (ID 1660)** by _Lobo Loco_ is licensed under CC BY-NC 4.0
