@@ -1,6 +1,6 @@
 /**
  * @ Author: Laroustine
- * @ Modified time: 08/07 18:36
+ * @ Modified time: 21/07 02:36
  * @ Modified by: Laroustine
  * @ Description: This script has been made by me ↖(^▽^)↗
  */
@@ -61,8 +61,9 @@ public class MusicPlugin extends MusicPlayerPluginImpl {
     }
 
     protected String getSimulationMusic(CombatEngineAPI engine) {
+        String name = "simulation_ost";
         LOG.info("The music for the simulation is started");
-        return "music_sim_battle";
+        return name;
     }
 
     @Override
