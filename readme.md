@@ -89,7 +89,7 @@ in the file put in this:
 
 There can only be 1 music per faction.
 
-## For Modders
+## For Modders (A BIT OUTDATED)(MISSING INFORMATION)
 
 To add compatibility for your mod you just need to add this in your ***.faction**
 
