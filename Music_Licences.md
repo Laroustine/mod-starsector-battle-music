@@ -20,5 +20,10 @@ Licensed under Creative Commons BY Attribution 4.0 License
 # Music from [freemusicarchive](https://freemusicarchive.org)
 - **The Construal of Space in Language and Thought** by _Irama Gema_ is licensed under CC BY 4.0
 
-## Example
-**ART** by _Author_ is licensed under CC BY-NC 4.0
+# Original Music by [cleanForkery](https://soundcloud.com/user-934462690)
+**All Original Faction Musics** by _cleanForkery_ are licensed under CC BY-NC 4.0
+
+## Links
+- Youtube: https://www.youtube.com/channel/UCU51jBq526M8muYjEncukaw
+- Soundcloud: https://soundcloud.com/user-934462690
+- Instagram: https://www.instagram.com/xy.ery/

@@ -30,6 +30,46 @@
                 "randomStart": false
             }
         ],
+        "hegemony_battle_advantage": [
+            {
+                "source": "sounds/music/cbm/hegemony/battle_advantage",
+                "volume": 0.28,
+                "files": [
+                    "hegemony_victory.ogg"
+                ],
+                "randomStart": false
+            }
+        ],
+        "hegemony_battle": [
+            {
+                "source": "sounds/music/cbm/hegemony/battle",
+                "volume": 0.28,
+                "files": [
+                    "hegemony_fight.ogg"
+                ],
+                "randomStart": false
+            }
+        ],
+        "hegemony_battle_retreat": [
+            {
+                "source": "sounds/music/cbm/hegemony/battle_retreat",
+                "volume": 0.28,
+                "files": [
+                    "hegemony_run.ogg"
+                ],
+                "randomStart": false
+            }
+        ],
+        "hegemony_battle_losing": [
+            {
+                "source": "sounds/music/cbm/hegemony/battle_losing",
+                "volume": 0.28,
+                "files": [
+                    "hegemony_defeat.ogg"
+                ],
+                "randomStart": false
+            }
+        ],
         "independent_battle": [
             {
                 "source": "sounds/music/cbm/independent/battle",
