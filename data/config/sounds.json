@@ -33,7 +33,7 @@
         "hegemony_battle_advantage": [
             {
                 "source": "sounds/music/cbm/hegemony/battle_advantage",
-                "volume": 0.28,
+                "volume": 0.1,
                 "files": [
                     "hegemony_victory.ogg"
                 ],
@@ -43,7 +43,7 @@
         "hegemony_battle": [
             {
                 "source": "sounds/music/cbm/hegemony/battle",
-                "volume": 0.28,
+                "volume": 0.1,
                 "files": [
                     "hegemony_fight.ogg"
                 ],
@@ -53,7 +53,7 @@
         "hegemony_battle_retreat": [
             {
                 "source": "sounds/music/cbm/hegemony/battle_retreat",
-                "volume": 0.28,
+                "volume": 0.1,
                 "files": [
                     "hegemony_run.ogg"
                 ],
@@ -63,7 +63,7 @@
         "hegemony_battle_losing": [
             {
                 "source": "sounds/music/cbm/hegemony/battle_losing",
-                "volume": 0.28,
+                "volume": 0.1,
                 "files": [
                     "hegemony_defeat.ogg"
                 ],

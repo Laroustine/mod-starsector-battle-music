@@ -1,6 +1,6 @@
 /**
  * @ Author: Laroustine
- * @ Modified time: 21/07 02:36
+ * @ Modified time: 24/07 18:04
  * @ Modified by: Laroustine
  * @ Description: This script has been made by me ↖(^▽^)↗
  */
@@ -10,6 +10,8 @@ import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.campaign.CampaignFleetAPI;
 import com.fs.starfarer.api.campaign.FactionAPI;
 import com.fs.starfarer.api.combat.CombatEngineAPI;
+import com.fs.starfarer.api.fleet.FleetGoal;
+import com.fs.starfarer.api.fleet.FleetMemberAPI;
 import com.fs.starfarer.api.impl.MusicPlayerPluginImpl;
 
 import org.apache.log4j.Logger;
@@ -17,11 +19,25 @@ import org.apache.log4j.Logger;
 public class MusicPlugin extends MusicPlayerPluginImpl {
     protected final Logger LOG = Logger.getLogger(MusicPlugin.class);
 
-    protected float getFleetRatio(CampaignFleetAPI player, CampaignFleetAPI ennemy) {
-        if (player.getFleetPoints() == 0) {
-            return 100;
+    private float getFleetValue(CampaignFleetAPI fleet) {
+        int score = 0;
+
+        for (FleetMemberAPI ship : fleet.getFleetData().getMembersListCopy()) {
+            score += ship.getDeploymentPointsCost();
         }
-        return ennemy.getFleetPoints() / player.getFleetPoints();
+        return (float) score;
+    }
+
+    protected float getFleetRatio(CampaignFleetAPI ennemy, CampaignFleetAPI player) {
+        float playerCount = getFleetValue(player);
+        float ennemyCount = getFleetValue(ennemy);
+
+        if (ennemyCount == playerCount) {
+            return 1.0f;
+        } else if (playerCount == 0) {
+            return 2.0f;
+        }
+        return ennemyCount / playerCount;
     }
 
     protected String getCampaignMusic(CombatEngineAPI engine) {
@@ -30,8 +46,9 @@ public class MusicPlugin extends MusicPlayerPluginImpl {
         String musicId = battle;
         float ratio = getFleetRatio(engine.getContext().getOtherFleet(), engine.getContext().getPlayerFleet());
 
+        LOG.info("The ratio for this battle is : " + (int)(ratio * 100) + "%");
         // Special Cases
-        if (engine.isEnemyInFullRetreat()) {
+        if (engine.getContext().getOtherGoal().equals(FleetGoal.ESCAPE)) {
             musicId = faction.getMusicMap().get("battle_retreat");
         } else if (ratio >= 1.6) {
             musicId = faction.getMusicMap().get("battle_advantage");
