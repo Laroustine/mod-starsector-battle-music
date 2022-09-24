@@ -1,3 +1,4 @@
 command,class,tags,syntax,help
 TypeOfFight,data.scripts.console.TypeOfFight,"cbm,combat",TypeOfFight (no arguments),This displays the type of fight and the ratio of the given fight.
-ShowTags,data.scripts.console.ShowTags,"cbm,combat",ShowTags (no arguments),This displays the tags of both fleets.
+ShowFleetTags,data.scripts.console.ShowFleetTags,"cbm,combat",ShowFleetTags (no arguments),This displays the tags of both fleets.
+ShowShipsTags,data.scripts.console.ShowShipsTags,"cbm,combat",ShowShipsTags (no arguments),This displays the tags of both fleets ships.

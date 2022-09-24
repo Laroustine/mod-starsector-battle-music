@@ -1,6 +1,6 @@
 /**
  * @ Author: Laroustine
- * @ Modified time: 24/09 17:45
+ * @ Modified time: 25/09 01:22
  * @ Modified by: Laroustine
  * @ Description: This script has been made by me ↖(^▽^)↗
  */
@@ -10,6 +10,11 @@ import org.lazywizard.console.BaseCommand;
 import org.lazywizard.console.CommonStrings;
 import org.lazywizard.console.Console;
 
+import com.fs.starfarer.api.Global;
+import com.fs.starfarer.api.combat.CombatEngineAPI;
+
+import data.scripts.plugin.MusicPlugin;
+
 public class TypeOfFight implements BaseCommand {
 
     @Override
@@ -18,7 +23,8 @@ public class TypeOfFight implements BaseCommand {
             Console.showMessage(CommonStrings.ERROR_COMBAT_ONLY);
             return CommandResult.WRONG_CONTEXT;
         }
-        float ratio = 0.0f;
+        CombatEngineAPI ce = Global.getCombatEngine();
+        float ratio = MusicPlugin.getFleetRatio(ce.getContext().getOtherFleet(), ce.getContext().getPlayerFleet());
         String type = "NONE";
 
         if (ratio >= 1.6) {

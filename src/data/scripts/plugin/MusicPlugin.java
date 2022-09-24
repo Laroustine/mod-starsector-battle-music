@@ -1,6 +1,6 @@
 /**
  * @ Author: Laroustine
- * @ Modified time: 24/09 17:47
+ * @ Modified time: 25/09 01:23
  * @ Modified by: Laroustine
  * @ Description: This script has been made by me ↖(^▽^)↗
  */
@@ -17,9 +17,13 @@ import com.fs.starfarer.api.impl.MusicPlayerPluginImpl;
 import org.apache.log4j.Logger;
 
 public class MusicPlugin extends MusicPlayerPluginImpl {
+    private final float RATIO_DESTROY = 0.2f;
+    private final float RATIO_LOSE = 0.5f;
+    private final float RATIO_WIN = 1.5f;
+
     protected final Logger LOG = Logger.getLogger(MusicPlugin.class);
 
-    private float getFleetValue(CampaignFleetAPI fleet) {
+    private static float getFleetValue(CampaignFleetAPI fleet) {
         int score = 0;
 
         for (FleetMemberAPI ship : fleet.getFleetData().getMembersListCopy()) {
@@ -28,7 +32,7 @@ public class MusicPlugin extends MusicPlayerPluginImpl {
         return (float) score;
     }
 
-    public float getFleetRatio(CampaignFleetAPI ennemy, CampaignFleetAPI player) {
+    public static float getFleetRatio(CampaignFleetAPI ennemy, CampaignFleetAPI player) {
         float playerCount = getFleetValue(player);
         float ennemyCount = getFleetValue(ennemy);
 
@@ -63,17 +67,26 @@ public class MusicPlugin extends MusicPlayerPluginImpl {
     protected String getCampaignMusic(CombatEngineAPI engine) {
         FactionAPI faction = engine.getContext().getOtherFleet().getFaction();
         String battle = faction.getMusicMap().get("battle");
-        String musicId = battle;
+        String musicId = null;
+        String temp = null;
+        
         float ratio = getFleetRatio(engine.getContext().getOtherFleet(), engine.getContext().getPlayerFleet());
 
         LOG.info("The ratio for this battle is : " + (int) (ratio * 100) + "%");
         // Special Cases
         if (engine.getContext().getOtherGoal().equals(FleetGoal.ESCAPE)) {
             musicId = faction.getMusicMap().get("battle_retreat");
-        } else if (ratio >= 1.6) {
-            musicId = faction.getMusicMap().get("battle_advantage");
-        } else if (ratio <= 0.4) {
+        } else if (ratio <= RATIO_DESTROY) {
             musicId = faction.getMusicMap().get("battle_losing");
+        } else if (ratio <= RATIO_LOSE) {
+            musicId = faction.getMusicMap().get("battle_losing");
+        } else if (ratio >= RATIO_WIN) {
+            musicId = faction.getMusicMap().get("battle_advantage");
+        }
+        // Ships & Fleet
+        if (ratio <= RATIO_WIN) {
+            temp = getFleetMusic(engine.getContext().getOtherFleet());
+            musicId = temp != null ? temp : getShipMusic(engine.getContext().getOtherFleet());
         }
         // Handle Find
         if (musicId != null || battle != null) {
