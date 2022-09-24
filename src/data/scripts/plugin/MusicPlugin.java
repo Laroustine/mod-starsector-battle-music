@@ -1,6 +1,6 @@
 /**
  * @ Author: Laroustine
- * @ Modified time: 24/07 18:04
+ * @ Modified time: 24/09 17:47
  * @ Modified by: Laroustine
  * @ Description: This script has been made by me ↖(^▽^)↗
  */
@@ -28,7 +28,7 @@ public class MusicPlugin extends MusicPlayerPluginImpl {
         return (float) score;
     }
 
-    protected float getFleetRatio(CampaignFleetAPI ennemy, CampaignFleetAPI player) {
+    public float getFleetRatio(CampaignFleetAPI ennemy, CampaignFleetAPI player) {
         float playerCount = getFleetValue(player);
         float ennemyCount = getFleetValue(ennemy);
 
@@ -40,13 +40,33 @@ public class MusicPlugin extends MusicPlayerPluginImpl {
         return ennemyCount / playerCount;
     }
 
+    private String getFleetMusic(CampaignFleetAPI fleet) {
+        for (String tag : fleet.getTags()) {
+            if (tag.contains("cbm_")) {
+                return tag;
+            }
+        }
+        return null;
+    }
+
+    private String getShipMusic(CampaignFleetAPI fleet) {
+        for (FleetMemberAPI ship : fleet.getFleetData().getMembersListCopy()) {
+            for (String tag : ship.getHullSpec().getTags()) {
+                if (tag.contains("cbm_")) {
+                    return tag;
+                }
+            }
+        }
+        return null;
+    }
+
     protected String getCampaignMusic(CombatEngineAPI engine) {
         FactionAPI faction = engine.getContext().getOtherFleet().getFaction();
         String battle = faction.getMusicMap().get("battle");
         String musicId = battle;
         float ratio = getFleetRatio(engine.getContext().getOtherFleet(), engine.getContext().getPlayerFleet());
 
-        LOG.info("The ratio for this battle is : " + (int)(ratio * 100) + "%");
+        LOG.info("The ratio for this battle is : " + (int) (ratio * 100) + "%");
         // Special Cases
         if (engine.getContext().getOtherGoal().equals(FleetGoal.ESCAPE)) {
             musicId = faction.getMusicMap().get("battle_retreat");
@@ -78,7 +98,7 @@ public class MusicPlugin extends MusicPlayerPluginImpl {
     }
 
     protected String getSimulationMusic(CombatEngineAPI engine) {
-        String name = "simulation_ost";
+        String name = "cbm_simulation_ost";
         LOG.info("The music for the simulation is started");
         return name;
     }
@@ -89,9 +109,9 @@ public class MusicPlugin extends MusicPlayerPluginImpl {
 
         if (engine.isInCampaign()) {
             musicId = getCampaignMusic(engine);
-        } else if (Global.getSettings().getBoolean("mission_ost") && engine.isMission()) {
+        } else if (Global.getSettings().getBoolean("cbm_mission_ost") && engine.isMission()) {
             musicId = getMissionMusic(engine);
-        } else if (Global.getSettings().getBoolean("simulation_ost") && engine.isSimulation()) {
+        } else if (Global.getSettings().getBoolean("cbm_simulation_ost") && engine.isSimulation()) {
             musicId = getSimulationMusic(engine);
         } else {
             LOG.info("Music is set to default.");

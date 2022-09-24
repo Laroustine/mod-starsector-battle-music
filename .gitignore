@@ -163,6 +163,7 @@ replay_pid*
 
 # Makefile
 sources.txt
+lib
 Makefile
 
 # End of https://www.toptal.com/developers/gitignore/api/intellij,visualstudiocode,java
