@@ -1,6 +1,6 @@
 /**
  * @ Author: Laroustine
- * @ Modified time: 25/09 01:05
+ * @ Modified time: 25/09 12:04
  * @ Modified by: Laroustine
  * @ Description: This script has been made by me ↖(^▽^)↗
  */
@@ -23,8 +23,6 @@ public class ShowFleetTags implements BaseCommand {
             String pfleet = bce.getContext().getPlayerFleet().getTags().toString();
             String efleet = bce.getContext().getOtherFleet().getTags().toString();
             
-            Console.showMessage("KEYSET : " + bce.getCustomData().keySet().toString());
-            Console.showMessage("Entryset : " + bce.getCustomData().entrySet().toString());
             Console.showMessage("Your Fleet : " + pfleet);
             Console.showMessage("Enemmy Fleet : " + efleet);
             return CommandResult.SUCCESS;
