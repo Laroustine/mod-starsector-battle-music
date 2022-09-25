@@ -1,15 +1,5 @@
 {
     "music": {
-        "cbm_TEMP": [
-            {
-                "source": "sounds/music/cbm/00/battle_retreat",
-                "volume": 0.1,
-                "files": [
-                    "Tanc_a_lelek_-_Turjan_Aylahn.ogg"
-                ],
-                "randomStart": false
-            }
-        ],
         "00_battle_advantage": [
             {
                 "source": "sounds/music/cbm/00/battle_advantage",
