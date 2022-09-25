@@ -1,6 +1,6 @@
 /**
  * @ Author: Laroustine
- * @ Modified time: 25/09 01:23
+ * @ Modified time: 25/09 17:41
  * @ Modified by: Laroustine
  * @ Description: This script has been made by me ↖(^▽^)↗
  */
@@ -84,10 +84,9 @@ public class MusicPlugin extends MusicPlayerPluginImpl {
             musicId = faction.getMusicMap().get("battle_advantage");
         }
         // Ships & Fleet
-        if (ratio <= RATIO_WIN) {
-            temp = getFleetMusic(engine.getContext().getOtherFleet());
-            musicId = temp != null ? temp : getShipMusic(engine.getContext().getOtherFleet());
-        }
+        temp = getFleetMusic(engine.getContext().getOtherFleet());
+        temp = temp != null ? temp : getShipMusic(engine.getContext().getOtherFleet());
+        musicId = temp != null ? temp : musicId;
         // Handle Find
         if (musicId != null || battle != null) {
             LOG.info("The music for this faction is : " + musicId == null ? battle : musicId);
