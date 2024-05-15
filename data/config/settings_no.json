@@ -1,6 +1,9 @@
 {
   "cbm_simulation_ost": false,
   "cbm_mission_ost": false,
+  "cbm_destroy_value": 0.2f,
+  "cbm_lose_value": 0.5f,
+  "cbm_win_value": 1.5f,
   "plugins": {
     "musicPlugin": "data.scripts.plugin.MusicPlugin"
   }
