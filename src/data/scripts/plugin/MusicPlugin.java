@@ -1,6 +1,6 @@
 /**
  * @ Author: Laroustine
- * @ Modified time: 25/09 17:41
+ * @ Modified time: 15/05 15:40
  * @ Modified by: Laroustine
  * @ Description: This script has been made by me ↖(^▽^)↗
  */
@@ -17,11 +17,15 @@ import com.fs.starfarer.api.impl.MusicPlayerPluginImpl;
 import org.apache.log4j.Logger;
 
 public class MusicPlugin extends MusicPlayerPluginImpl {
-    private final float RATIO_DESTROY = 0.2f;
-    private final float RATIO_LOSE = 0.5f;
-    private final float RATIO_WIN = 1.5f;
+    public float RATIO_DESTROY = Global.getSettings().getFloat("cbm_destroy_value");
+    public float RATIO_LOSE = Global.getSettings().getFloat("cbm_lose_value");
+    public float RATIO_WIN = Global.getSettings().getFloat("cbm_win_value");
 
     protected final Logger LOG = Logger.getLogger(MusicPlugin.class);
+
+    public MusicPlugin() {
+        LOG.info("Music level: " + RATIO_DESTROY * 100 + "% Destroy / " + RATIO_LOSE * 100 + "% Lose / " + RATIO_WIN * 100 + "% Win");
+    }
 
     private static float getFleetValue(CampaignFleetAPI fleet) {
         int score = 0;
@@ -77,7 +81,7 @@ public class MusicPlugin extends MusicPlayerPluginImpl {
         if (engine.getContext().getOtherGoal().equals(FleetGoal.ESCAPE)) {
             musicId = faction.getMusicMap().get("battle_retreat");
         } else if (ratio <= RATIO_DESTROY) {
-            musicId = faction.getMusicMap().get("battle_losing");
+            musicId = faction.getMusicMap().get("battle_destroy");
         } else if (ratio <= RATIO_LOSE) {
             musicId = faction.getMusicMap().get("battle_losing");
         } else if (ratio >= RATIO_WIN) {
