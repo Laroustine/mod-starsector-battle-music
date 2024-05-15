@@ -3,6 +3,7 @@
         "battle_advantage": "hegemony_battle_advantage",
         "battle_retreat": "hegemony_battle_retreat",
         "battle_losing": "hegemony_battle_losing",
+        "battle_destroy": "hegemony_battle_retreat",
         "battle": "hegemony_battle"
     }
 }
