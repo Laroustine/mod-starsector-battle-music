@@ -1,5 +1,7 @@
 {
     "masterVersionFile": "https://raw.githubusercontent.com/Laroustine/mod-starsector-battle-music/master/battle_music.version",
+    "directDownloadURL": "https://github.com/Laroustine/mod-starsector-battle-music/releases/download/v.2.0.0/Battle_Music_Custom.zip",
+    "modThreadId": 24663,
     "modName": "Battle Music",
     "modVersion": {
         "major": 2,
