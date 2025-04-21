@@ -1,6 +1,6 @@
 /**
  * @ Author: Laroustine
- * @ Modified time: 15/05 15:40
+ * @ Modified time: 2025/04/21 14:22
  * @ Modified by: Laroustine
  * @ Description: This script has been made by me ↖(^▽^)↗
  */
@@ -20,11 +20,26 @@ public class MusicPlugin extends MusicPlayerPluginImpl {
     public float RATIO_DESTROY = Global.getSettings().getFloat("cbm_destroy_value");
     public float RATIO_LOSE = Global.getSettings().getFloat("cbm_lose_value");
     public float RATIO_WIN = Global.getSettings().getFloat("cbm_win_value");
+    public float RATIO_WIN_XTREM = Global.getSettings().getFloat("cbm_xtrem_win_value");
+
+    public static final String MUSIC_BATTLE_XTR = "battle_xtreme";
+    public static final String MUSIC_BATTLE_ADV = "battle_advantage";
+    public static final String MUSIC_BATTLE = "battle";
+    public static final String MUSIC_BATTLE_LOSE = "battle_losing";
+    public static final String MUSIC_BATTLE_DES = "battle_destroy";
+    public static final String MUSIC_BATTLE_RET = "battle_retreat";
+    public static final String MUSIC_PLAYER_RET = "player_retreat";
 
     protected final Logger LOG = Logger.getLogger(MusicPlugin.class);
 
     public MusicPlugin() {
-        LOG.info("Music level: " + RATIO_DESTROY * 100 + "% Destroy / " + RATIO_LOSE * 100 + "% Lose / " + RATIO_WIN * 100 + "% Win");
+        LOG.info("Music level: "
+                + RATIO_DESTROY * 100
+                + "% Destroy / "
+                + RATIO_LOSE * 100
+                + "% Lose / "
+                + RATIO_WIN * 100
+                + "% Win");
     }
 
     private static float getFleetValue(CampaignFleetAPI fleet) {
@@ -40,10 +55,8 @@ public class MusicPlugin extends MusicPlayerPluginImpl {
         float playerCount = getFleetValue(player);
         float ennemyCount = getFleetValue(ennemy);
 
-        if (ennemyCount == playerCount) {
-            return 1.0f;
-        } else if (playerCount == 0) {
-            return 2.0f;
+        if (playerCount == 0) {
+            return 0;
         }
         return ennemyCount / playerCount;
     }
@@ -68,25 +81,36 @@ public class MusicPlugin extends MusicPlayerPluginImpl {
         return null;
     }
 
-    protected String getCampaignMusic(CombatEngineAPI engine) {
+    public static String getBattleType(CombatEngineAPI engine, float destroy, float lose, float win, float xtrem) {
         FactionAPI faction = engine.getContext().getOtherFleet().getFaction();
-        String battle = faction.getMusicMap().get("battle");
-        String musicId = null;
-        String temp = null;
-        
         float ratio = getFleetRatio(engine.getContext().getOtherFleet(), engine.getContext().getPlayerFleet());
 
-        LOG.info("The ratio for this battle is : " + (int) (ratio * 100) + "%");
-        // Special Cases
-        if (engine.getContext().getOtherGoal().equals(FleetGoal.ESCAPE)) {
-            musicId = faction.getMusicMap().get("battle_retreat");
-        } else if (ratio <= RATIO_DESTROY) {
-            musicId = faction.getMusicMap().get("battle_destroy");
-        } else if (ratio <= RATIO_LOSE) {
-            musicId = faction.getMusicMap().get("battle_losing");
-        } else if (ratio >= RATIO_WIN) {
-            musicId = faction.getMusicMap().get("battle_advantage");
+        if (Global.getSettings().getBoolean("cbm_player_retreat")
+                && engine.getContext().getPlayerGoal().equals(FleetGoal.ESCAPE)) {
+            return faction.getMusicMap().get(MUSIC_PLAYER_RET);
+        } else if (engine.getContext().getOtherGoal().equals(FleetGoal.ESCAPE)) {
+            return faction.getMusicMap().get(MUSIC_BATTLE_RET);
+        } else if (ratio <= destroy) {
+            return faction.getMusicMap().get(MUSIC_BATTLE_DES);
+        } else if (ratio <= lose) {
+            return faction.getMusicMap().get(MUSIC_BATTLE_LOSE);
+        } else if (ratio >= xtrem) {
+            return faction.getMusicMap().get(MUSIC_BATTLE_XTR);
+        } else if (ratio >= win) {
+            return faction.getMusicMap().get(MUSIC_BATTLE_ADV);
         }
+        return null;
+    }
+
+    protected String getCampaignMusic(CombatEngineAPI engine) {
+        FactionAPI faction = engine.getContext().getOtherFleet().getFaction();
+        String battle = faction.getMusicMap().get(MUSIC_BATTLE);
+        String musicId = getBattleType(engine, RATIO_DESTROY, RATIO_LOSE, RATIO_WIN, RATIO_WIN_XTREM);
+        String temp = null;
+
+        LOG.info("The ratio for this battle is : "
+                + (int) (getFleetRatio(engine.getContext().getOtherFleet(), engine.getContext().getPlayerFleet()) * 100)
+                + "%");
         // Ships & Fleet
         temp = getFleetMusic(engine.getContext().getOtherFleet());
         temp = temp != null ? temp : getShipMusic(engine.getContext().getOtherFleet());
@@ -102,13 +126,13 @@ public class MusicPlugin extends MusicPlayerPluginImpl {
     }
 
     protected String getMissionMusic(CombatEngineAPI engine) {
-        String musicId = Global.getSector().getMemory().getString(MUSIC_SET_MEM_KEY);
+        String missionId = engine.getMissionId();
+        String musicId = Global.getSector().getMemory().getString(missionId);
 
         if (musicId != null) {
             LOG.info("The music for this mission is : " + musicId);
         } else {
-            LOG.info("The Mission [" + engine.getMissionId() + "] does not have custom music.");
-            musicId = super.getMusicSetIdForCombat(engine);
+            LOG.info("The Mission [" + missionId + "] does not have custom music.");
         }
         return musicId;
     }
@@ -121,17 +145,18 @@ public class MusicPlugin extends MusicPlayerPluginImpl {
 
     @Override
     public String getMusicSetIdForCombat(CombatEngineAPI engine) {
-        String musicId = super.getMusicSetIdForCombat(engine);
+        String musicDefault = super.getMusicSetIdForCombat(engine);
+        String musicId = null;
 
         if (engine.isInCampaign()) {
             musicId = getCampaignMusic(engine);
-        } else if (Global.getSettings().getBoolean("cbm_mission_ost") && engine.isMission()) {
+        } else if (engine.isMission() && Global.getSettings().getBoolean("cbm_mission_ost")) {
             musicId = getMissionMusic(engine);
-        } else if (Global.getSettings().getBoolean("cbm_simulation_ost") && engine.isSimulation()) {
+        } else if (engine.isSimulation() && Global.getSettings().getBoolean("cbm_simulation_ost")) {
             musicId = getSimulationMusic(engine);
         } else {
             LOG.info("Music is set to default.");
         }
-        return musicId;
+        return musicId == null ? musicDefault : musicId;
     }
 }

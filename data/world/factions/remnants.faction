@@ -1,9 +1,11 @@
 {
     "music": {
+        "player_retreat": "00_player_retreat",
+        "battle_xtreme": "00_player_retreat",
         "battle_advantage": "00_battle_advantage",
-        "battle_retreat": "00_battle_retreat",
+        "battle_retreat": "remnants_battle_losing",
         "battle_losing": "remnants_battle_losing",
-        "battle_destroy": "00_battle_retreat",
+        "battle_destroy": "remnants_battle_losing",
         "battle": "remnants_battle"
     }
 }

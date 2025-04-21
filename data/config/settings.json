@@ -1,9 +1,11 @@
 {
+  "cbm_player_retreat": true,
   "cbm_simulation_ost": true,
   "cbm_mission_ost": true,
   "cbm_destroy_value": 0.2f,
   "cbm_lose_value": 0.5f,
   "cbm_win_value": 1.5f,
+  "cbm_xtrem_win_value": 2.5f,
   "plugins": {
     "musicPlugin": "data.scripts.plugin.MusicPlugin"
   }

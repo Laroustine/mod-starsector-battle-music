@@ -1,6 +1,6 @@
 /**
  * @ Author: Laroustine
- * @ Modified time: 25/09 01:22
+ * @ Modified time: 2025/04/20 23:30
  * @ Modified by: Laroustine
  * @ Description: This script has been made by me ↖(^▽^)↗
  */
@@ -16,7 +16,6 @@ import com.fs.starfarer.api.combat.CombatEngineAPI;
 import data.scripts.plugin.MusicPlugin;
 
 public class TypeOfFight implements BaseCommand {
-
     @Override
     public CommandResult runCommand(String args, CommandContext context) {
         if (!context.isInCombat()) {
@@ -25,16 +24,12 @@ public class TypeOfFight implements BaseCommand {
         }
         CombatEngineAPI ce = Global.getCombatEngine();
         float ratio = MusicPlugin.getFleetRatio(ce.getContext().getOtherFleet(), ce.getContext().getPlayerFleet());
-        String type = "NONE";
-
-        if (ratio >= 1.6) {
-            type = "battle_advantage";
-        } else if (ratio <= 0.4) {
-            type = "battle_losing";
-        } else {
-            type = "battle";
-        }
-        Console.showMessage("The fight is currently in [" + type + "] and has a ratio of " + ratio);
+        float RATIO_DESTROY = Global.getSettings().getFloat("cbm_destroy_value");
+        float RATIO_LOSE = Global.getSettings().getFloat("cbm_lose_value");
+        float RATIO_WIN = Global.getSettings().getFloat("cbm_win_value");
+        float RATIO_WIN_XTREM = Global.getSettings().getFloat("cbm_xtrem_win_value");
+        String type = MusicPlugin.getBattleType(ce, RATIO_DESTROY, RATIO_LOSE, RATIO_WIN, RATIO_WIN_XTREM);
+        Console.showMessage("The fight is currently in [" + (type == null ? "NONE" : type) + "] and has a ratio of " + ratio);
         return CommandResult.SUCCESS;
     }
 

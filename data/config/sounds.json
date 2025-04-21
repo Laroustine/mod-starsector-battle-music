@@ -10,9 +10,9 @@
                 "randomStart": false
             }
         ],
-        "00_battle_retreat": [
+        "00_player_retreat": [
             {
-                "source": "sounds/music/cbm/00/battle_retreat",
+                "source": "sounds/music/cbm/00/player_retreat",
                 "volume": 0.1,
                 "files": [
                     "Tanc_a_lelek_-_Turjan_Aylahn.ogg"
